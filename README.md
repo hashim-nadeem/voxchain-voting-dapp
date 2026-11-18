@@ -5,8 +5,29 @@
 A decentralized YES/NO voting dApp built with Solidity, Hardhat 3, Next.js 16, ethers.js v6
 and a React Three Fiber 3D interface.
 
-> 🚧 **Status: Phase 1 (foundation).** Smart contract, UI and deployment arrive in later phases.
+> 🚧 **Status: Phase 2 (smart contract).** UI and public deployment arrive in later phases.
 > The contract has **not** been audited.
+
+## Smart contract
+
+[`contracts/contracts/Voting.sol`](contracts/contracts/Voting.sol): open YES/NO voting.
+
+- Anyone can create a proposal (title 1–120 bytes, description 1–1000 bytes, duration 1 min – 30 days).
+- Each address votes **once** per proposal; votes are final and enforced on-chain.
+- Voting closes at the deadline; `getStatus` returns `Active`, `Passed`, `Rejected` or `Tied` (simple majority, no quorum).
+- No owner/admin, no ETH handling, no external calls. Events: `ProposalCreated`, `Voted`.
+
+```powershell
+# Working directory: contracts/
+npm run compile
+npm test                        # 44 Mocha tests
+npx hardhat test --gas-stats    # with gas report
+
+# Local deployment (terminal 1)
+npm run node
+# Local deployment (terminal 2)
+npm run deploy:local            # requires --network localhost and chain ID 31337
+```
 
 ## Tech stack
 

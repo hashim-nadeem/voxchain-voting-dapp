@@ -36,3 +36,5 @@ npm-debug.log*
 .DS_Store
 Thumbs.db
 .idea/
+# Editor code-review extension tracking data
+.cr-track/

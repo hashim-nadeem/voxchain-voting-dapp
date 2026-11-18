@@ -74,8 +74,8 @@ npm run build
 
 ## Known dependency advisories
 
-`npm audit` reports advisories in **development-only** tooling (`zod`, `glob`, `minimatch`
-via Hardhat/Mocha; `picomatch` via ESLint). None of this code ships to the browser or the
+`npm audit` reports advisories in **development-only** tooling (`zod` via Hardhat;
+`glob` and `minimatch` via Mocha; `picomatch` via ESLint). None of this code ships to the browser or the
 blockchain. No non-breaking fix exists at the time of writing; they are re-checked each phase.
 
 ## Cost

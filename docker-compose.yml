@@ -1,0 +1,29 @@
+# Local development stack. Optional: the plain npm workflow works without Docker.
+#
+# Networking cheat-sheet:
+#   - Inside a container, "localhost" means THAT container, not Windows.
+#   - Containers reach each other by service name (http://hardhat:8545).
+#   - MetaMask runs in your Windows browser, so it uses the published ports
+#     (http://127.0.0.1:8545 and http://localhost:3000).
+services:
+  hardhat:
+    build: ./contracts
+    ports:
+      - "8545:8545"
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "3000:3000"
+    environment:
+      # Read by the browser, therefore 127.0.0.1 (see .env.example).
+      NEXT_PUBLIC_CHAIN_ID: ${NEXT_PUBLIC_CHAIN_ID:-31337}
+      NEXT_PUBLIC_RPC_URL: ${NEXT_PUBLIC_RPC_URL:-http://127.0.0.1:8545}
+      NEXT_PUBLIC_CONTRACT_ADDRESS: ${NEXT_PUBLIC_CONTRACT_ADDRESS:-}
+    volumes:
+      # Live-edit source from Windows; keep the container's own Linux node_modules and .next.
+      - ./frontend:/app
+      - /app/node_modules
+      - /app/.next
+    depends_on:
+      - hardhat

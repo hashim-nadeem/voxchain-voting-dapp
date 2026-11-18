@@ -1,0 +1,38 @@
+# Dependencies
+node_modules/
+
+# Environment: real values never committed, examples are
+.env
+.env.*
+!.env.example
+!.env*.example
+
+# Hardhat build output
+contracts/artifacts/
+contracts/cache/
+contracts/types/
+contracts/coverage/
+contracts/coverage.json
+# Local chain deployments are throwaway (chain resets on restart)
+contracts/ignition/deployments/chain-31337/
+
+# Next.js
+frontend/.next/
+frontend/out/
+frontend/next-env.d.ts
+*.tsbuildinfo
+
+# Vercel CLI link
+.vercel
+
+# Secrets that should never exist here, but just in case
+*.pem
+*.key
+keystore.json
+
+# Logs / OS / editor
+npm-debug.log*
+*.log
+.DS_Store
+Thumbs.db
+.idea/
